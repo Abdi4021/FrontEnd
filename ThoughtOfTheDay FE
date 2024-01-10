@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thought of the Day App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #thoughtTable {
+      border-collapse: collapse;
+      width: 80%;
+      margin: auto;
+    }
+
+    #thoughtTable th, #thoughtTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #thoughtTable th {
+      background-color: #f2f2f2;
+    }
+
+    #thoughtInput {
+      width: 60%;
+      padding: 8px;
+      margin-right: 8px;
+    }
+
+    #addThoughtBtn {
+      padding: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thought of the Day</h1>
+  
+  <input type="text" id="thoughtInput" placeholder="Enter your thought">
+  <button id="addThoughtBtn">Add Thought</button>
+
+  <table id="thoughtTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Thought</th>
+      </tr>
+    </thead>
+    <tbody id="thoughtTableBody"></tbody>
+  </table>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const thoughtInput = document.getElementById('thoughtInput');
+      const addThoughtBtn = document.getElementById('addThoughtBtn');
+      const thoughtTableBody = document.getElementById('thoughtTableBody');
+
+      addThoughtBtn.addEventListener('click', function() {
+        const thought = thoughtInput.value;
+        if (thought.trim() !== '') {
+          const date = new Date().toLocaleDateString();
+          const newRow = `<tr><td>${date}</td><td>${thought}</td></tr>`;
+          thoughtTableBody.innerHTML += newRow;
+          thoughtInput.value = '';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
